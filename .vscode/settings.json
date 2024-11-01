@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "backref",
         "bawah",
         "belum",
         "dengan",
@@ -11,10 +12,12 @@
         "jika",
         "kuat",
         "kunci",
+        "Membuat",
         "misalnya",
         "rahasia",
         "SQLALCHEMY",
         "tabel",
-        "utama"
+        "utama",
+        "werkzeug"
     ]
 }

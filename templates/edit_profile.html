@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profil</title>
+</head>
+<body>
+    <h1>Edit Profil</h1>
+    <form action="{{ url_for('edit_profile') }}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="username" value="{{ current_user.username }}" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" value="{{ current_user.password }}" required>
+        <br>
+        <button type="submit">Simpan Perubahan</button>
+    </form>
+</body>
+</html>
