@@ -22,37 +22,39 @@
 
     {% if current_user.is_authenticated and current_user.id == post.author_id %}
     <form action="{{ url_for('delete_post', post_id=post.id) }}" method="post" style="display:inline;">
-        <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus postingan ini?');">Hapus</button>
+        <button type="submit"
+            onclick="return confirm('Apakah Anda yakin ingin menghapus postingan ini?');">Hapus</button>
     </form>
     <a href="{{ url_for('edit_post', post_id=post.id) }}">Edit</a>
     {% else %}
     <p></p>
     {% endif %}
 
-        <!-- Tombol Like -->
-        <form action="{{ url_for('like_post', post_id=post.id) }}" method="post" style="display:inline;">
-            <button type="submit">
-                {{ 'Unlike' if current_user.is_authenticated and post.likes | selectattr('user_id', 'equalto', current_user.id) | list | length > 0 else 'Like' }}
-            </button>
-        </form>
-        <span>{{ post.likes | length }} Like</span>
-        
-        <!-- Form Komentar -->
-        <form action="{{ url_for('add_comment', post_id=post.id) }}" method="post">
-            <textarea name="content" placeholder="Tambahkan komentar..."></textarea>
-            <button type="submit">Kirim</button>
-        </form>
-        
-        <!-- Menampilkan Komentar -->
-        <div>
-            <h4>Komentar</h4>
-            {% for comment in post.comments %}
-                <p><strong>{{ comment.user.username }}:</strong> {{ comment.content }}</p>
-                <small>{{ comment.comment_date.strftime('%Y-%m-%d %H:%M:%S') }}</small>
-            {% endfor %}
-        </div>
-        <hr>
-    
+    <!-- Tombol Like -->
+    <form action="{{ url_for('like_post', post_id=post.id) }}" method="post" style="display:inline;">
+        <button type="submit">
+            {{ 'Unlike' if current_user.is_authenticated and post.likes | selectattr('user_id', 'equalto',
+            current_user.id) | list | length > 0 else 'Like' }}
+        </button>
+    </form>
+    <span>{{ post.likes | length }} Like</span>
+
+    <!-- Form Komentar -->
+    <form action="{{ url_for('add_comment', post_id=post.id) }}" method="post">
+        <textarea name="content" placeholder="Tambahkan komentar..."></textarea>
+        <button type="submit">Kirim</button>
+    </form>
+
+    <!-- Menampilkan Komentar -->
+    <div>
+        <h4>Komentar</h4>
+        {% for comment in post.comments %}
+        <p><strong>{{ comment.user.username }}:</strong> {{ comment.content }}</p>
+        <small>{{ comment.comment_date.strftime('%Y-%m-%d %H:%M:%S') }}</small>
+        {% endfor %}
+    </div>
+    <hr>
+
 
     {% endfor %}
     {% endblock %}
